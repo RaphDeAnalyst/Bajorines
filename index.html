@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bajorines | The Taste of Pure Vitality</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bajorines: {
+                red: '#B00020',
+                pink: '#F8E8E8',
+                dark: '#111111',
+                black: '#0a0a0a',
+              }
+            },
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Playfair Display', 'serif'],
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'fade-in': 'fadeIn 0.3s ease-out forwards',
+              'slide-in-right': 'slideInRight 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards',
+              'slide-up': 'slideUp 0.8s ease-out forwards',
+              'slow-zoom': 'slowZoom 20s linear infinite alternate',
+              'spin-slow': 'spin 12s linear infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
+              },
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              slideInRight: {
+                '0%': { transform: 'translateX(100%)' },
+                '100%': { transform: 'translateX(0)' },
+              },
+              slideUp: {
+                '0%': { transform: 'translateY(20px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' },
+              },
+              slowZoom: {
+                '0%': { transform: 'scale(1)' },
+                '100%': { transform: 'scale(1.15)' },
+              }
+            }
+          },
+        },
+      }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.556.0"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
