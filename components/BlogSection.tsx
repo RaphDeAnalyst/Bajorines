@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowRight, ChevronLeft, Calendar, Clock, Share2 } from 'lucide-react';
+import { ArrowRight, ChevronLeft, Calendar, Clock, Share2, ChevronUp } from 'lucide-react';
 
 interface BlogPost {
   id: number;
@@ -14,6 +14,7 @@ interface BlogPost {
 
 export const BlogSection: React.FC = () => {
   const [selectedPost, setSelectedPost] = useState<BlogPost | null>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const posts: BlogPost[] = [
     {
@@ -124,6 +125,70 @@ export const BlogSection: React.FC = () => {
           </p>
         </>
       )
+    },
+    {
+      id: 4,
+      title: "Morning vs Evening: When to Sip?",
+      excerpt: "Optimizing your intake for energy in the AM or recovery in the PM.",
+      image: "https://picsum.photos/800/600?random=35",
+      category: "Wellness",
+      date: "Jan 15, 2024",
+      readTime: "4 min read",
+      content: (
+        <>
+          <p className="mb-6 text-lg leading-relaxed text-gray-700">
+            One of the most common questions we get is: "When is the best time to drink Bajorines?" The answer depends entirely on your goals.
+          </p>
+          <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">The Morning Rush</h3>
+          <p className="mb-6 leading-relaxed text-gray-700">
+            Drinking tart cherry juice in the morning provides a natural source of copper, potassium, and manganese. It's a gentle wake-up call for your metabolism without the jitters of caffeine.
+          </p>
+          <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">The Evening Wind Down</h3>
+          <p className="mb-6 leading-relaxed text-gray-700">
+             Due to its natural melatonin content, many users find a small can 30 minutes before bed helps signal to the body that it's time to rest. It's the perfect nightcap for the health-conscious.
+          </p>
+        </>
+      )
+    },
+    {
+      id: 5,
+      title: "Pairing Bajorines with Food",
+      excerpt: "From dark chocolate to charcuterie, discover the perfect culinary companions.",
+      image: "https://picsum.photos/800/600?random=42",
+      category: "Lifestyle",
+      date: "Feb 02, 2024",
+      readTime: "3 min read",
+      content: (
+        <>
+          <p className="mb-6 text-lg leading-relaxed text-gray-700">
+            Bajorines isn't just a solo act. Its complex tartness cuts through rich fats and complements earthy flavors beautifully.
+          </p>
+          <ul className="list-disc pl-6 mb-6 space-y-2 text-gray-700">
+            <li><strong>Dark Chocolate:</strong> The acidity of the cherry balances the bitterness of 70%+ cocoa.</li>
+            <li><strong>Almonds & Walnuts:</strong> A handful of nuts and a cold can makes for a heart-healthy, satiating snack.</li>
+            <li><strong>Soft Cheeses:</strong> Try it with Brie or Goat cheese. The fruit notes act like a liquid jam pairing.</li>
+          </ul>
+        </>
+      )
+    },
+    {
+      id: 6,
+      title: "Recycling 101: The Aluminum Cycle",
+      excerpt: "How your empty can becomes a new one in as little as 60 days.",
+      image: "https://picsum.photos/800/600?random=55",
+      category: "Sustainability",
+      date: "Feb 20, 2024",
+      readTime: "5 min read",
+      content: (
+        <>
+          <p className="mb-6 text-lg leading-relaxed text-gray-700">
+            Did you know aluminum is infinitely recyclable? Unlike plastic, which degrades with each cycle, aluminum retains its properties forever.
+          </p>
+          <p className="mb-6 leading-relaxed text-gray-700">
+            When you toss a Bajorines can in the recycling bin, it is melted down, rolled into sheets, and reformed into a new can—often returning to the shelf in less than 60 days. This process uses 95% less energy than creating new aluminum from raw ore.
+          </p>
+        </>
+      )
     }
   ];
 
@@ -140,10 +205,12 @@ export const BlogSection: React.FC = () => {
     setSelectedPost(null);
   };
 
-  const handleViewAllClick = (e: React.MouseEvent) => {
+  const toggleExpand = (e: React.MouseEvent) => {
     e.preventDefault();
-    alert("Navigating to Blog Archive...\n\n(This serves as a placeholder for the blog listing page)");
+    setIsExpanded(!isExpanded);
   };
+
+  const displayedPosts = isExpanded ? posts : posts.slice(0, 3);
 
   return (
     <section className="py-24 bg-gray-50 min-h-screen" id="blog">
@@ -215,19 +282,23 @@ export const BlogSection: React.FC = () => {
               </div>
               <a 
                 href="#" 
-                onClick={handleViewAllClick}
+                onClick={toggleExpand}
                 className="hidden md:flex items-center gap-2 text-bajorines-red font-semibold hover:gap-3 transition-all"
               >
-                View All Articles <ArrowRight size={20} />
+                {isExpanded ? (
+                  <>View Less <ChevronUp size={20} /></>
+                ) : (
+                  <>View All Articles <ArrowRight size={20} /></>
+                )}
               </a>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {posts.map((post) => (
+              {displayedPosts.map((post) => (
                 <article 
                   key={post.id} 
                   onClick={() => handleArticleClick(post)}
-                  className="group cursor-pointer flex flex-col h-full bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300"
+                  className="group cursor-pointer flex flex-col h-full bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 animate-fade-in"
                 >
                   <div className="relative h-64 overflow-hidden">
                     <img 
@@ -263,10 +334,14 @@ export const BlogSection: React.FC = () => {
             <div className="mt-8 md:hidden">
                <a 
                  href="#" 
-                 onClick={handleViewAllClick}
+                 onClick={toggleExpand}
                  className="flex items-center justify-center gap-2 text-bajorines-red font-semibold"
                 >
-                View All Articles <ArrowRight size={20} />
+                {isExpanded ? (
+                  <>View Less <ChevronUp size={20} /></>
+                ) : (
+                  <>View All Articles <ArrowRight size={20} /></>
+                )}
               </a>
             </div>
           </>

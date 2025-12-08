@@ -7,6 +7,13 @@ export const Hero: React.FC = () => {
   // Using the high-energy splash image to act as the "GIF" background
   const heroAsset = "https://file-service.googleusercontent.com/mg/Axh7y59h7k975k15545k49615647565";
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="relative h-screen w-full overflow-hidden flex items-center justify-center bg-black">
       {/* A. Background Integration: Fullscreen asset using <img> tag */}
@@ -43,10 +50,17 @@ export const Hero: React.FC = () => {
         </ScrollReveal>
         
         <ScrollReveal delay={400} className="flex flex-col sm:flex-row gap-4 justify-center w-full">
-          <Button className="hover:scale-105 transform transition-transform shadow-red-900/50">
+          <Button 
+            onClick={() => scrollToSection('shop')}
+            className="hover:scale-105 transform transition-transform shadow-red-900/50"
+          >
             SHOP THE FLAVOR
           </Button>
-          <Button variant="outline" className="hover:scale-105 transform transition-transform backdrop-blur-sm">
+          <Button 
+            variant="outline" 
+            onClick={() => scrollToSection('about')}
+            className="hover:scale-105 transform transition-transform backdrop-blur-sm"
+          >
             OUR STORY <ArrowRight size={18} />
           </Button>
         </ScrollReveal>

@@ -8,6 +8,19 @@ export const CartDrawer: React.FC = () => {
 
   if (!isCartOpen) return null;
 
+  const handleStartShopping = () => {
+    toggleCart();
+    const shopSection = document.getElementById('shop');
+    if (shopSection) {
+      shopSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleCheckout = () => {
+    alert("Proceeding to secure checkout...");
+    toggleCart();
+  };
+
   return (
     <div className="fixed inset-0 z-[60] flex justify-end">
       {/* Backdrop */}
@@ -37,7 +50,7 @@ export const CartDrawer: React.FC = () => {
                 <span className="text-3xl">🍒</span>
               </div>
               <p className="text-lg font-medium">Your bag is empty.</p>
-              <Button variant="ghost" onClick={toggleCart}>Start Shopping</Button>
+              <Button variant="ghost" onClick={handleStartShopping}>Start Shopping</Button>
             </div>
           ) : (
             items.map((item) => (
@@ -91,7 +104,7 @@ export const CartDrawer: React.FC = () => {
               <span className="font-bold text-gray-900">${cartTotal.toFixed(2)}</span>
             </div>
             <p className="text-xs text-gray-400 mb-6 text-center">Shipping & taxes calculated at checkout.</p>
-            <Button fullWidth className="group">
+            <Button fullWidth className="group" onClick={handleCheckout}>
               CHECKOUT NOW <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>

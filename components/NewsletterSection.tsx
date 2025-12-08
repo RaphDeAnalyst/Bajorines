@@ -2,6 +2,11 @@ import React from 'react';
 import { Button } from './Button';
 
 export const NewsletterSection: React.FC = () => {
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    alert("You're on the list! Watch your inbox for your 10% off code.");
+  };
+
   return (
     <section className="bg-bajorines-red text-white relative overflow-hidden w-full flex flex-col justify-center py-24">
       {/* Decorative Background Elements */}
@@ -17,7 +22,7 @@ export const NewsletterSection: React.FC = () => {
           Join the Bajorines Club for exclusive access to new flavor drops, wellness tips, and members-only offers.
         </p>
 
-        <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto" onSubmit={(e) => e.preventDefault()}>
+        <form className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto" onSubmit={handleSubmit}>
           <input 
             type="email" 
             placeholder="Enter your email address" 
