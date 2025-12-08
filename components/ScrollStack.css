@@ -1,0 +1,69 @@
+.scroll-stack-scroller {
+  position: relative;
+  width: 100%;
+  will-change: scroll-position;
+}
+
+/* Container Mode */
+.scroll-stack-container {
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Window Mode */
+.scroll-stack-window {
+  height: auto;
+  overflow: visible;
+}
+
+.scroll-stack-inner {
+  padding: 0;
+  padding-bottom: 50vh; /* Add spacer at bottom for clean release */
+  width: 100%;
+  /* Fix for collapsing margins affecting calculations */
+  display: flex;
+  flex-direction: column;
+}
+
+.scroll-stack-card {
+  /* Critical: Disable CSS transitions on transform to prevent fighting with JS */
+  transition: transform 0s linear !important; 
+  
+  transform-origin: top center;
+  will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.25);
+  
+  /* Each section is at least full height */
+  min-height: 100vh;
+  width: 100%;
+  
+  margin: 0;
+  padding: 0;
+  /* Round corners for the card effect */
+  border-radius: 40px;
+  overflow: hidden;
+  
+  box-sizing: border-box;
+  
+  /* Initial state */
+  transform: translateZ(0);
+}
+
+/* First card (Hero) usually doesn't need top radius */
+.scroll-stack-card:first-child {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  min-height: 100vh;
+}
+
+.scroll-stack-end {
+  width: 100%;
+  height: 1px;
+  pointer-events: none;
+  visibility: hidden;
+}
