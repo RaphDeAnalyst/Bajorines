@@ -34,7 +34,7 @@ export const Features: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-white" id="ingredients">
+    <section className="bg-white w-full py-24" id="ingredients">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {features.map((feature, index) => (
