@@ -1,7 +1,7 @@
 
 import React, { useRef, useState, useCallback, useEffect } from 'react';
 import { Button } from './Button';
-import { Plus, CheckCircle2, ArrowRight, Truck, ShieldCheck, Lock } from 'lucide-react';
+import { Plus, CheckCircle2, Truck, ShieldCheck, Lock, Zap, Shield, Droplet, Flame, Clock } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import { useCart } from '../context/CartContext';
 
@@ -13,6 +13,7 @@ export const ProductShowcase: React.FC = () => {
   const [bundleSize, setBundleSize] = useState<BundleSize>(12);
   const [isSubscription, setIsSubscription] = useState(false);
   const [revealScale, setRevealScale] = useState(10);
+  const [timeLeft, setTimeLeft] = useState({ hours: 2, minutes: 14 });
   
   const containerRef = useRef<HTMLDivElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
@@ -30,14 +31,27 @@ export const ProductShowcase: React.FC = () => {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    // Shipping countdown logic
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev.minutes > 0) return { ...prev, minutes: prev.minutes - 1 };
+        if (prev.hours > 0) return { hours: prev.hours - 1, minutes: 59 };
+        return prev;
+      });
+    }, 60000);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearInterval(timer);
+    };
   }, []);
 
   /**
    * Price calculation based on bundle size and subscription
    * 12 Pack: $24.00 ($2.00 / bottle)
    * 24 Pack: $44.00 ($1.83 / bottle)
-   * 48 Pack: $79.20 ($1.65 / bottle) - Optimized for bulk value
+   * 48 Pack: $79.20 ($1.65 / bottle)
    */
   const calculatePrice = (size: BundleSize, sub: boolean) => {
     let base = 24.00;
@@ -66,8 +80,9 @@ export const ProductShowcase: React.FC = () => {
 
   return (
     <section ref={sectionRef} className="py-24 md:py-32 bg-black relative overflow-hidden" id="shop">
+      {/* Background Typography */}
       <div 
-        className="absolute inset-0 opacity-20 pointer-events-none transition-all duration-300 ease-out flex items-center justify-center overflow-hidden"
+        className="absolute inset-0 opacity-10 pointer-events-none transition-all duration-300 ease-out flex items-center justify-center overflow-hidden"
         style={{ 
           clipPath: `circle(${revealScale}% at 50% 50%)`,
         }}
@@ -101,8 +116,8 @@ export const ProductShowcase: React.FC = () => {
                 </p>
 
                 <div className="bg-white/5 border border-white/10 p-6 md:p-8 rounded-[2.5rem] backdrop-blur-2xl">
-                    <h3 className="text-white text-xs font-black tracking-widest mb-6 flex items-center gap-2 opacity-60">
-                        SELECT PACK SIZE
+                    <h3 className="text-white text-xs font-black tracking-widest mb-6 flex items-center gap-2 opacity-60 uppercase">
+                        Select Pack Size
                     </h3>
                     
                     <div className="grid grid-cols-3 gap-3 mb-8">
@@ -170,6 +185,14 @@ export const ProductShowcase: React.FC = () => {
                 </div>
 
                 <div className="pt-2">
+                   {/* Urgency Nudge */}
+                   <div className="flex items-center gap-2 mb-4 bg-bajorines-red/10 border border-bajorines-red/20 px-4 py-2 rounded-xl">
+                      <Clock size={14} className="text-bajorines-red animate-pulse" />
+                      <span className="text-white text-[10px] font-black uppercase tracking-widest">
+                        Order in the next <span className="text-bajorines-red">{timeLeft.hours}h {timeLeft.minutes}m</span> for Same-Day Shipping
+                      </span>
+                   </div>
+
                    <Button 
                      fullWidth 
                      className="py-6 text-lg shadow-2xl shadow-red-900/30 group uppercase tracking-widest"
@@ -178,16 +201,16 @@ export const ProductShowcase: React.FC = () => {
                      ADD TO BAG <Plus size={20} className="group-hover:rotate-90 transition-transform duration-300" />
                    </Button>
                    
-                   {/* Optimized De-Risk Trust Signals */}
+                   {/* De-Risk Trust Row */}
                    <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-6 justify-center lg:justify-start">
                       <div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-gray-500">
-                         <Truck size={14} className="text-bajorines-red" /> FREE SHIPPING ($50+)
+                         <Truck size={14} className="text-bajorines-red" /> 📦 FREE SHIPPING ($50+)
                       </div>
                       <div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-gray-500">
-                         <ShieldCheck size={14} className="text-bajorines-red" /> SATISFACTION GUARANTEE
+                         <ShieldCheck size={14} className="text-bajorines-red" /> ✅ SATISFACTION GUARANTEE
                       </div>
                       <div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-gray-500">
-                         <Lock size={14} className="text-bajorines-red" /> SECURE CHECKOUT
+                         <Lock size={14} className="text-bajorines-red" /> 💳 SECURE CHECKOUT
                       </div>
                    </div>
                 </div>
@@ -195,7 +218,7 @@ export const ProductShowcase: React.FC = () => {
             </ScrollReveal>
           </div>
 
-          <div className="lg:w-[55%] order-1 lg:order-2 flex justify-center perspective-2000 py-6 md:py-12">
+          <div className="lg:w-[55%] order-1 lg:order-2 flex justify-center perspective-2000 py-6 md:py-12 relative">
              <ScrollReveal className="w-full flex justify-center">
                 <div 
                   className="relative w-full max-w-xl transition-transform duration-100 ease-out cursor-pointer group"
@@ -225,13 +248,32 @@ export const ProductShowcase: React.FC = () => {
                       style={{ transform: 'translateZ(100px)' }}
                     />
                     
-                    <div className="absolute top-0 -right-4 bg-black/40 backdrop-blur-3xl border border-white/10 p-5 rounded-[2rem] z-30 transform translateZ(180px) shadow-2xl hidden md:block group-hover:border-bajorines-red/30 transition-colors">
-                        <div className="text-[9px] font-black text-bajorines-red uppercase tracking-widest mb-2 border-b border-bajorines-red/20 pb-1">Raw Benefits</div>
-                        <div className="space-y-1">
-                          <div className="text-white text-xs font-bold">+ High Antioxidants</div>
-                          <div className="text-white text-xs font-bold">+ 0g Added Sugar</div>
-                          <div className="text-white text-xs font-bold">+ Ionic Electrolytes</div>
+                    {/* Enhanced Raw Benefits Box - Premium Iconography */}
+                    <div className="absolute top-10 -right-8 bg-black/60 backdrop-blur-3xl border border-white/10 p-6 rounded-[2.5rem] z-30 transform translateZ(180px) shadow-2xl hidden md:block group-hover:border-bajorines-red/30 transition-all duration-500 w-52">
+                        <div className="text-[10px] font-black text-bajorines-red uppercase tracking-widest mb-4 border-b border-bajorines-red/20 pb-2">Raw Benefits</div>
+                        <div className="space-y-4">
+                          <div className="flex items-center gap-3 group/benefit">
+                            <div className="w-8 h-8 rounded-full bg-bajorines-red/20 flex items-center justify-center text-bajorines-red border border-bajorines-red/20">
+                              <Shield size={14} />
+                            </div>
+                            <div className="text-white text-[11px] font-bold leading-tight">High Antioxidants</div>
+                          </div>
+                          <div className="flex items-center gap-3 group/benefit">
+                            <div className="w-8 h-8 rounded-full bg-bajorines-red/20 flex items-center justify-center text-bajorines-red border border-bajorines-red/20">
+                              <Droplet size={14} />
+                            </div>
+                            <div className="text-white text-[11px] font-bold leading-tight">0g Added Sugar</div>
+                          </div>
+                          <div className="flex items-center gap-3 group/benefit">
+                            <div className="w-8 h-8 rounded-full bg-bajorines-red/20 flex items-center justify-center text-bajorines-red border border-bajorines-red/20">
+                              <Zap size={14} />
+                            </div>
+                            <div className="text-white text-[11px] font-bold leading-tight">Ionic Electrolytes</div>
+                          </div>
                         </div>
+                        
+                        {/* Connecting Line Aesthetic */}
+                        <div className="absolute -left-12 top-1/2 w-12 h-[1px] bg-gradient-to-r from-transparent to-bajorines-red/40 opacity-50 group-hover:opacity-100 transition-opacity"></div>
                     </div>
                   </div>
                 </div>
