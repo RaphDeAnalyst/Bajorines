@@ -1,25 +1,27 @@
+
 import React from 'react';
 import { Leaf, Zap, Droplet } from 'lucide-react';
 import { Feature } from '../types';
+import { ScrollReveal } from './ScrollReveal';
 
 export const Features: React.FC = () => {
   const features: Feature[] = [
     {
       id: 1,
-      title: "100% Natural Ingredients",
-      description: "Sourced directly from premium orchards. No artificial preservatives or colors.",
+      title: "Clean Energy: No Crash",
+      description: "100% raw cherry extract provides a steady surge of vitality without the synthetic jitters or mid-day slump of caffeine.",
       iconName: 'Leaf',
     },
     {
       id: 2,
-      title: "Electrolyte Boost",
-      description: "Naturally charged with potassium and magnesium to keep you hydrated and active.",
+      title: "Rapid Recovery: Recharged",
+      description: "Naturally occurring electrolytes and anthocyanins speed up muscle repair and significantly reduce post-active fatigue.",
       iconName: 'Zap',
     },
     {
       id: 3,
-      title: "Zero Added Sugar",
-      description: "Sweetened by nature. Enjoy the guilt-free taste of pure cherry essence.",
+      title: "Pure Focus: Zero Sugar",
+      description: "Sustain your mental clarity with nature's complex sugars and zero artificial sweeteners. High-performance hydration.",
       iconName: 'Droplet',
     },
   ];
@@ -34,20 +36,28 @@ export const Features: React.FC = () => {
   };
 
   return (
-    <section className="bg-white w-full py-24" id="benefits">
+    <section className="bg-white w-full py-32" id="benefits">
       <div className="container mx-auto px-6">
+        <div className="text-center max-w-2xl mx-auto mb-20">
+          <ScrollReveal>
+             <span className="text-bajorines-red font-bold tracking-[0.2em] uppercase text-xs mb-4 block">Engineered by nature</span>
+             <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-gray-900 mb-6 leading-tight">Designed for the High-Performer.</h2>
+             <p className="text-gray-500 text-lg font-light">We stripped away the noise to leave only what your body needs to excel.</p>
+          </ScrollReveal>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {features.map((feature, index) => (
-            <div 
-              key={feature.id} 
-              className="flex flex-col items-center text-center p-6 rounded-2xl hover:bg-bajorines-pink/20 transition-all duration-500 hover:scale-[1.02]"
-            >
-              <div className="w-16 h-16 rounded-full bg-bajorines-pink flex items-center justify-center mb-6 shadow-sm">
-                {getIcon(feature.iconName)}
+            <ScrollReveal key={feature.id} delay={index * 100}>
+              <div 
+                className="flex flex-col items-center text-center p-10 rounded-[3rem] bg-gray-50/50 hover:bg-white border border-transparent hover:border-bajorines-red/10 transition-all duration-500 hover:shadow-[0_40px_80px_-20px_rgba(176,0,32,0.1)] group"
+              >
+                <div className="w-24 h-24 rounded-3xl bg-white flex items-center justify-center mb-8 shadow-sm group-hover:scale-110 group-hover:bg-bajorines-pink/40 transition-all duration-500">
+                  {getIcon(feature.iconName)}
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4">{feature.title}</h3>
+                <p className="text-gray-500 leading-relaxed font-light text-lg">{feature.description}</p>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">{feature.title}</h3>
-              <p className="text-gray-600 leading-relaxed">{feature.description}</p>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

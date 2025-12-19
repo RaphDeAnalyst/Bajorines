@@ -1,10 +1,13 @@
+
 import React, { useEffect } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { Features } from './components/Features';
 import { IngredientsSection } from './components/IngredientsSection';
 import { ProductShowcase } from './components/ProductShowcase';
+import { ComparisonSection } from './components/ComparisonSection';
 import { Lifestyle } from './components/Lifestyle';
+import { FAQSection } from './components/FAQSection';
 import { BlogSection } from './components/BlogSection';
 import { NewsletterSection } from './components/NewsletterSection';
 import { RevealSection } from './components/RevealSection';
@@ -47,8 +50,10 @@ const App: React.FC = () => {
           <div id="features" className="bg-white"><Features /></div>
           <div id="ingredients" className="bg-black"><IngredientsSection /></div>
           <div id="shop" className="bg-black"><ProductShowcase /></div>
+          <div id="comparison" className="bg-black"><ComparisonSection /></div>
           <div id="reveal" className="bg-black"><RevealSection /></div>
           <div id="about" className="bg-bajorines-dark"><Lifestyle /></div>
+          <div id="faq" className="bg-white"><FAQSection /></div>
           <div id="blog" className="bg-gray-50"><BlogSection /></div>
           <div id="newsletter" className="bg-bajorines-red"><NewsletterSection /></div>
           <Footer />

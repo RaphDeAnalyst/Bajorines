@@ -1,40 +1,44 @@
+
 import React, { useRef, useState, useCallback } from 'react';
 import { Button } from './Button';
-import { Plus } from 'lucide-react';
+import { Plus, CheckCircle2 } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import { useCart } from '../context/CartContext';
+
+type BundleSize = 12 | 24 | 48;
 
 export const ProductShowcase: React.FC = () => {
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
   const [glarePos, setGlarePos] = useState({ x: 50, y: 50 });
+  const [bundleSize, setBundleSize] = useState<BundleSize>(12);
+  const [isSubscription, setIsSubscription] = useState(false);
+  
   const containerRef = useRef<HTMLDivElement>(null);
   const { addItem } = useCart();
 
   const productImage = "https://res.cloudinary.com/dp7bwqvoy/image/upload/v1766151654/Whisk_20fae4733d70c93be17443a9c16d2ca3dr_1_cu3u3s.jpg";
 
+  const getPrice = () => {
+    let base = 24.00;
+    if (bundleSize === 24) base = 44.00;
+    if (bundleSize === 48) base = 82.00;
+    return isSubscription ? base * 0.85 : base;
+  };
+
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
-
     const { left, top, width, height } = containerRef.current.getBoundingClientRect();
     const x = (e.clientX - left - width / 2) / 20;
     const y = (e.clientY - top - height / 2) / 20;
-
-    const glareX = ((e.clientX - left) / width) * 100;
-    const glareY = ((e.clientY - top) / height) * 100;
-
     setRotation({ x: -y, y: x });
-    setGlarePos({ x: glareX, y: glareY });
+    setGlarePos({ x: ((e.clientX - left) / width) * 100, y: ((e.clientY - top) / height) * 100 });
   }, []);
-
-  const handleMouseLeave = () => {
-    setRotation({ x: 0, y: 0 });
-  };
 
   const handleAddToCart = () => {
     addItem({
-      id: 'bajorines-cherry-12pk',
-      name: 'Bajorines Premium Cherry (12-Pack)',
-      price: 24.00,
+      id: `bajorines-cherry-${bundleSize}pk${isSubscription ? '-sub' : ''}`,
+      name: `Bajorines Premium Cherry (${bundleSize}-Pack)${isSubscription ? ' - Subscription' : ''}`,
+      price: getPrice(),
       image: productImage
     });
   };
@@ -55,34 +59,66 @@ export const ProductShowcase: React.FC = () => {
             </ScrollReveal>
             
             <ScrollReveal delay={100}>
-              <p className="text-xl text-gray-400 leading-relaxed max-w-xl">
-                Bajorines isn't just a drink; it's a statement. Crafted for those who demand flavor without the fuss. Our unique cold-press process preserves the delicate antioxidants found in fresh cherries.
-              </p>
-            </ScrollReveal>
-            
-            <ScrollReveal delay={200}>
-              <div className="space-y-4 border-t border-gray-800 pt-8 max-w-lg">
-                <div className="flex justify-between items-center text-sm font-medium text-gray-500">
-                  <span>Calories</span>
-                  <span className="text-white text-xl">15 kcal</span>
+              <div className="space-y-6">
+                <p className="text-xl text-gray-400 leading-relaxed max-w-xl">
+                  Nature's most potent recovery tool, delivered in a sleek, 100% recyclable vessel. Choose your vitality level below.
+                </p>
+
+                {/* Bundle Selection */}
+                <div className="grid grid-cols-3 gap-3 max-w-md">
+                  {[12, 24, 48].map((size) => (
+                    <button
+                      key={size}
+                      onClick={() => setBundleSize(size as BundleSize)}
+                      className={`py-4 px-2 rounded-2xl border-2 transition-all flex flex-col items-center gap-1 ${
+                        bundleSize === size 
+                          ? 'border-bajorines-red bg-bajorines-red/10 text-white' 
+                          : 'border-white/10 text-gray-500 hover:border-white/30'
+                      }`}
+                    >
+                      <span className="text-lg font-bold">{size}</span>
+                      <span className="text-[10px] uppercase font-black tracking-widest">Pack</span>
+                      {size === 48 && <span className="text-[9px] bg-bajorines-red text-white px-1.5 py-0.5 rounded-full absolute -top-2">Best Value</span>}
+                    </button>
+                  ))}
                 </div>
-                <div className="flex justify-between items-center text-sm font-medium text-gray-500">
-                  <span>Sugar</span>
-                  <span className="text-white text-xl">0g</span>
-                </div>
-                <div className="flex justify-between items-center text-sm font-medium text-gray-500">
-                  <span>Carbohydrates</span>
-                  <span className="text-white text-xl">4g</span>
+
+                {/* Purchase Type */}
+                <div className="space-y-3">
+                  <button 
+                    onClick={() => setIsSubscription(false)}
+                    className={`w-full flex items-center justify-between p-4 rounded-2xl border transition-all ${!isSubscription ? 'border-white/40 bg-white/5' : 'border-white/10 opacity-50'}`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${!isSubscription ? 'border-bajorines-red' : 'border-gray-600'}`}>
+                        {!isSubscription && <div className="w-2.5 h-2.5 bg-bajorines-red rounded-full" />}
+                      </div>
+                      <span className="text-white font-bold">One-time purchase</span>
+                    </div>
+                    <span className="text-white font-bold">${getPrice().toFixed(2)}</span>
+                  </button>
+
+                  <button 
+                    onClick={() => setIsSubscription(true)}
+                    className={`w-full flex items-center justify-between p-4 rounded-2xl border transition-all ${isSubscription ? 'border-bajorines-red bg-bajorines-red/10' : 'border-white/10 opacity-50'}`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <div className={`w-5 h-5 rounded-full border-2 flex items-center justify-center ${isSubscription ? 'border-bajorines-red' : 'border-gray-600'}`}>
+                        {isSubscription && <div className="w-2.5 h-2.5 bg-bajorines-red rounded-full" />}
+                      </div>
+                      <div className="text-left">
+                        <span className="text-white font-bold block">Subscribe & Save 15%</span>
+                        <span className="text-bajorines-red text-[10px] font-bold uppercase tracking-widest">Ships every 30 days</span>
+                      </div>
+                    </div>
+                    <span className="text-white font-bold">${getPrice().toFixed(2)}</span>
+                  </button>
                 </div>
               </div>
             </ScrollReveal>
 
-            <ScrollReveal delay={300}>
+            <ScrollReveal delay={200}>
               <div className="pt-6">
-                 <div className="flex items-center gap-4 mb-6">
-                   <span className="text-5xl font-bold text-white">$24.00</span>
-                   <span className="text-sm text-gray-500 uppercase tracking-widest">/ 12-pack</span>
-                 </div>
                  <Button 
                    fullWidth 
                    className="max-w-md py-5 text-xl shadow-red-900/40"
@@ -90,6 +126,14 @@ export const ProductShowcase: React.FC = () => {
                  >
                    ADD TO CART <Plus size={24} />
                  </Button>
+                 <div className="flex items-center gap-6 mt-6 text-gray-500">
+                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest">
+                       <CheckCircle2 size={14} className="text-green-500" /> Free Shipping
+                    </div>
+                    <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest">
+                       <CheckCircle2 size={14} className="text-green-500" /> Cancel Anytime
+                    </div>
+                 </div>
               </div>
             </ScrollReveal>
           </div>
@@ -100,7 +144,7 @@ export const ProductShowcase: React.FC = () => {
                   className="relative w-full max-w-2xl transition-transform duration-100 ease-out cursor-pointer group"
                   style={{ perspective: '2000px' }}
                   onMouseMove={handleMouseMove}
-                  onMouseLeave={handleMouseLeave}
+                  onMouseLeave={() => setRotation({ x: 0, y: 0 })}
                   ref={containerRef}
                 >
                   <div 
@@ -110,12 +154,9 @@ export const ProductShowcase: React.FC = () => {
                       transformStyle: 'preserve-3d' 
                     }}
                   >
-                    {/* Interactive Glare Overlay */}
                     <div 
                       className="absolute inset-0 pointer-events-none z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                      style={{
-                        background: `radial-gradient(circle at ${glarePos.x}% ${glarePos.y}%, rgba(255,255,255,0.15) 0%, transparent 60%)`
-                      }}
+                      style={{ background: `radial-gradient(circle at ${glarePos.x}% ${glarePos.y}%, rgba(255,255,255,0.15) 0%, transparent 60%)` }}
                     ></div>
 
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-bajorines-red/30 rounded-full blur-3xl -z-10 group-hover:bg-bajorines-red/50 transition-colors duration-700 animate-pulse"></div>
@@ -126,19 +167,10 @@ export const ProductShowcase: React.FC = () => {
                       className="w-full h-auto object-contain drop-shadow-[0_35px_35px_rgba(0,0,0,0.6)] relative z-10"
                       style={{ transform: 'translateZ(50px)' }}
                     />
-                    
-                    <div 
-                      className="absolute -top-6 -right-6 bg-white/10 backdrop-blur-xl border border-white/20 shadow-2xl rounded-full w-28 h-28 flex items-center justify-center flex-col transform z-20"
-                      style={{ transform: 'translateZ(100px)' }}
-                    >
-                      <span className="text-3xl font-bold text-bajorines-red">New</span>
-                      <span className="text-[10px] font-bold text-white uppercase tracking-wider">Premium</span>
-                    </div>
                   </div>
                 </div>
              </ScrollReveal>
           </div>
-
         </div>
       </div>
     </section>
