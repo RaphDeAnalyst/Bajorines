@@ -33,11 +33,16 @@ export const ProductShowcase: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Updated price calculation to be pure and take arguments
+  /**
+   * Price calculation based on bundle size and subscription
+   * 12 Pack: $24.00 ($2.00 / bottle)
+   * 24 Pack: $44.00 ($1.83 / bottle)
+   * 48 Pack: $79.20 ($1.65 / bottle) - Optimized for bulk value
+   */
   const calculatePrice = (size: BundleSize, sub: boolean) => {
     let base = 24.00;
     if (size === 24) base = 44.00;
-    if (size === 48) base = 82.00;
+    if (size === 48) base = 79.20;
     return sub ? base * 0.85 : base;
   };
 
@@ -105,14 +110,22 @@ export const ProductShowcase: React.FC = () => {
                         <button
                         key={size}
                         onClick={() => setBundleSize(size as BundleSize)}
-                        className={`relative py-4 rounded-2xl border-2 transition-all flex flex-col items-center gap-0.5 overflow-hidden group/btn ${
+                        className={`relative py-5 rounded-2xl border-2 transition-all flex flex-col items-center gap-0.5 overflow-hidden group/btn ${
                             bundleSize === size 
                             ? 'border-bajorines-red bg-bajorines-red/20 text-white' 
                             : 'border-white/5 text-gray-500 hover:border-white/20 hover:bg-white/5'
                         }`}
                         >
-                        <span className="text-xl font-black">{size}</span>
-                        <span className="text-[9px] uppercase font-black tracking-widest opacity-60">Pack</span>
+                        <span className="text-2xl font-black leading-none">{size}</span>
+                        <span className="text-[10px] uppercase font-black tracking-widest opacity-60 mb-2">Pack</span>
+                        
+                        {/* Price Per Bottle Logic */}
+                        <div className={`text-[10px] font-bold px-2 py-0.5 rounded-full transition-colors ${
+                          bundleSize === size ? 'bg-bajorines-red text-white' : 'bg-white/5 text-gray-400'
+                        }`}>
+                          ${(calculatePrice(size as BundleSize, false) / size).toFixed(2)} <span className="text-[8px] opacity-70">/ bottle</span>
+                        </div>
+
                         {size === 48 && (
                             <span className="absolute top-0 right-0 bg-bajorines-red text-white text-[7px] font-black px-1.5 py-0.5 rounded-bl-lg">BEST VALUE</span>
                         )}
