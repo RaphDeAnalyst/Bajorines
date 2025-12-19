@@ -13,11 +13,11 @@ export const Button: React.FC<ButtonProps> = ({
   className = '',
   ...props 
 }) => {
-  const baseStyles = "px-8 py-3 rounded-full font-semibold transition-all duration-300 transform active:scale-95 flex items-center justify-center gap-2";
+  const baseStyles = "relative px-8 py-3 rounded-full font-semibold transition-all duration-300 transform active:scale-95 flex items-center justify-center gap-2 group overflow-hidden";
   
   const variants = {
-    primary: "bg-bajorines-red text-white hover:bg-red-800 shadow-lg hover:shadow-red-900/20",
-    outline: "border-2 border-white text-white hover:bg-white hover:text-bajorines-red",
+    primary: "bg-bajorines-red text-white hover:bg-red-700 hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(176,0,32,0.4)]",
+    outline: "border-2 border-white text-white hover:bg-white hover:text-bajorines-red hover:scale-[1.03] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]",
     ghost: "text-bajorines-dark hover:text-bajorines-red hover:bg-bajorines-pink/50",
   };
 
@@ -26,7 +26,9 @@ export const Button: React.FC<ButtonProps> = ({
       className={`${baseStyles} ${variants[variant]} ${fullWidth ? 'w-full' : ''} ${className}`}
       {...props}
     >
-      {children}
+      <span className="relative z-10 flex items-center gap-2">
+        {children}
+      </span>
     </button>
   );
 };

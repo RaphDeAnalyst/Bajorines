@@ -2,6 +2,7 @@ import React from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { Features } from './components/Features';
+import { IngredientsSection } from './components/IngredientsSection';
 import { ProductShowcase } from './components/ProductShowcase';
 import { Lifestyle } from './components/Lifestyle';
 import { BlogSection } from './components/BlogSection';
@@ -20,6 +21,7 @@ const App: React.FC = () => {
         <main className="w-full">
           <div className="bg-black"><Hero /></div>
           <div className="bg-white"><Features /></div>
+          <div className="bg-black"><IngredientsSection /></div>
           <div className="bg-black"><ProductShowcase /></div>
           <div className="bg-bajorines-dark"><Lifestyle /></div>
           <div className="bg-gray-50"><BlogSection /></div>

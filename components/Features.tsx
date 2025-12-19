@@ -34,13 +34,13 @@ export const Features: React.FC = () => {
   };
 
   return (
-    <section className="bg-white w-full py-24" id="ingredients">
+    <section className="bg-white w-full py-24" id="benefits">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {features.map((feature, index) => (
             <div 
               key={feature.id} 
-              className="flex flex-col items-center text-center p-6 rounded-2xl hover:bg-bajorines-pink/20 transition-colors duration-300"
+              className="flex flex-col items-center text-center p-6 rounded-2xl hover:bg-bajorines-pink/20 transition-all duration-500 hover:scale-[1.02]"
             >
               <div className="w-16 h-16 rounded-full bg-bajorines-pink flex items-center justify-center mb-6 shadow-sm">
                 {getIcon(feature.iconName)}

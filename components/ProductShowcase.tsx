@@ -9,8 +9,6 @@ export const ProductShowcase: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { addItem } = useCart();
 
-  // Using the "Clean Bottle on Black" image. 
-  // We switched the section to dark mode so this image blends perfectly.
   const productImage = "https://file-service.googleusercontent.com/mg/Axh7y59a72k1s343p2x7p3w458s438x47";
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
@@ -37,14 +35,12 @@ export const ProductShowcase: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-gradient-to-b from-bajorines-dark to-black overflow-hidden relative" id="shop">
-      {/* Background radial gradient to highlight the product */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-bajorines-red/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <section className="py-24 bg-gradient-to-b from-black to-bajorines-dark overflow-hidden relative" id="shop">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-bajorines-red/5 rounded-full blur-[120px] pointer-events-none"></div>
 
       <div className="container mx-auto px-6 relative z-10">
         <div className="flex flex-col lg:flex-row items-center gap-16">
           
-          {/* Text Content */}
           <div className="lg:w-1/2 order-2 lg:order-1 space-y-8">
             <ScrollReveal>
               <h2 className="font-display text-4xl lg:text-6xl font-bold text-white leading-none">
@@ -93,7 +89,6 @@ export const ProductShowcase: React.FC = () => {
             </ScrollReveal>
           </div>
 
-          {/* Interactive Image Container */}
           <div className="lg:w-1/2 order-1 lg:order-2 flex justify-center perspective-1000">
              <ScrollReveal className="w-full flex justify-center">
                 <div 
@@ -104,14 +99,13 @@ export const ProductShowcase: React.FC = () => {
                   ref={containerRef}
                 >
                   <div 
-                    className="relative transition-transform duration-100 ease-out"
+                    className="relative transition-transform duration-100 ease-out animate-float"
                     style={{ 
                       transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
                       transformStyle: 'preserve-3d' 
                     }}
                   >
-                    {/* Glowing effect behind can */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-bajorines-red/30 rounded-full blur-3xl -z-10 group-hover:bg-bajorines-red/40 transition-colors duration-500"></div>
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] bg-bajorines-red/20 rounded-full blur-3xl -z-10 group-hover:bg-bajorines-red/30 transition-colors duration-500"></div>
                     
                     <img 
                       src={productImage} 
@@ -120,13 +114,12 @@ export const ProductShowcase: React.FC = () => {
                       style={{ transform: 'translateZ(20px)' }}
                     />
                     
-                    {/* Floating Badge */}
                     <div 
-                      className="absolute top-10 right-10 bg-white/10 backdrop-blur-md border border-white/20 shadow-xl rounded-full p-4 w-24 h-24 flex items-center justify-center flex-col transform translate-z-50 animate-float"
+                      className="absolute top-10 right-10 bg-white/5 backdrop-blur-md border border-white/20 shadow-xl rounded-full p-4 w-24 h-24 flex items-center justify-center flex-col transform translate-z-50"
                       style={{ transform: 'translateZ(60px)' }}
                     >
                       <span className="text-2xl font-bold text-bajorines-red">New</span>
-                      <span className="text-xs font-semibold text-white uppercase tracking-wider">Flavor</span>
+                      <span className="text-[10px] font-bold text-white uppercase tracking-wider">Flavor</span>
                     </div>
                   </div>
                 </div>
