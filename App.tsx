@@ -10,7 +10,6 @@ import { Lifestyle } from './components/Lifestyle';
 import { FAQSection } from './components/FAQSection';
 import { BlogSection } from './components/BlogSection';
 import { NewsletterSection } from './components/NewsletterSection';
-import { RevealSection } from './components/RevealSection';
 import { Footer } from './components/Footer';
 import { CartProvider } from './context/CartContext';
 import { CartDrawer } from './components/CartDrawer';
@@ -20,7 +19,7 @@ import Lenis from 'lenis';
 const App: React.FC = () => {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.5,
+      duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
       touchMultiplier: 2,
@@ -47,15 +46,39 @@ const App: React.FC = () => {
         
         <main className="w-full">
           <Hero />
-          <div id="features" className="bg-white"><Features /></div>
-          <div id="ingredients" className="bg-black"><IngredientsSection /></div>
-          <div id="shop" className="bg-black"><ProductShowcase /></div>
-          <div id="comparison" className="bg-black"><ComparisonSection /></div>
-          <div id="reveal" className="bg-black"><RevealSection /></div>
-          <div id="about" className="bg-bajorines-dark"><Lifestyle /></div>
-          <div id="faq" className="bg-white"><FAQSection /></div>
-          <div id="blog" className="bg-gray-50"><BlogSection /></div>
-          <div id="newsletter" className="bg-bajorines-red"><NewsletterSection /></div>
+          
+          <div id="features" className="bg-white">
+            <Features />
+          </div>
+          
+          <div id="shop" className="bg-black">
+            <ProductShowcase />
+          </div>
+          
+          <div id="ingredients" className="bg-black">
+            <IngredientsSection />
+          </div>
+          
+          <div id="comparison" className="bg-black">
+            <ComparisonSection />
+          </div>
+          
+          <div id="about" className="bg-bajorines-dark">
+            <Lifestyle />
+          </div>
+          
+          <div id="faq" className="bg-white">
+            <FAQSection />
+          </div>
+          
+          <div id="blog" className="bg-gray-50">
+            <BlogSection />
+          </div>
+          
+          <div id="newsletter" className="bg-bajorines-red">
+            <NewsletterSection />
+          </div>
+
           <Footer />
         </main>
       </div>

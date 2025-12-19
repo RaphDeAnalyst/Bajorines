@@ -18,46 +18,10 @@ export const BlogSection: React.FC = () => {
 
   const posts: BlogPost[] = [
     {
-      id: 1,
-      title: "The Antioxidant Power of Tart Cherries",
-      excerpt: "Why this superfood is taking the wellness world by storm and how it aids recovery.",
-      image: "https://picsum.photos/800/600?random=20",
-      category: "Wellness",
-      date: "Oct 12, 2023",
-      readTime: "5 min read",
-      content: (
-        <>
-          <p className="mb-6 text-lg leading-relaxed text-gray-700">
-            In the realm of superfoods, few fruits punch as far above their weight as the tart cherry. While sweet cherries are a summer staple, their sour cousins (specifically the Montmorency variety used in Bajorines) are packing a serious nutritional payload that science is just beginning to fully unravel.
-          </p>
-          
-          <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Anthocyanins: The Secret Weapon</h3>
-          <p className="mb-6 leading-relaxed text-gray-700">
-            The deep, rich red color of our beverage isn't just for show. It comes from anthocyanins, powerful antioxidants that fight oxidative stress in the body. Studies suggest that these compounds may have anti-inflammatory properties comparable to common over-the-counter pain relief, making them a favorite among endurance athletes.
-          </p>
-
-          <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Recovery and Sleep</h3>
-          <p className="mb-6 leading-relaxed text-gray-700">
-            Perhaps the most celebrated benefit of tart cherry juice is its impact on recovery and sleep. Bajorines contains naturally occurring melatonin, the hormone that regulates your sleep-wake cycle.
-          </p>
-          <ul className="list-disc pl-6 mb-6 space-y-2 text-gray-700">
-            <li><strong>Reduced Muscle Soreness:</strong> Consuming tart cherry extract before and after intense exercise can reduce strength loss and muscle pain.</li>
-            <li><strong>Better Sleep Efficiency:</strong> Clinical trials have shown that tart cherry juice increases sleep time and efficiency in adults.</li>
-            <li><strong>Faster Recovery:</strong> By mitigating oxidative damage, your body bounces back faster after a HIIT session or a long run.</li>
-          </ul>
-
-          <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">The Verdict</h3>
-          <p className="mb-6 leading-relaxed text-gray-700">
-            Whether you are training for a marathon or just trying to get a better night's rest after a stressful week of work, the natural compounds found in every sip of Bajorines offer a simple, delicious way to support your body's intrinsic recovery systems.
-          </p>
-        </>
-      )
-    },
-    {
       id: 2,
       title: "5 Mocktail Recipes for Summer",
-      excerpt: "Elevate your hydration game with these simple, refreshing Bajorines mixology ideas.",
-      image: "https://picsum.photos/800/600?random=21",
+      excerpt: "Elevate your hydration game with these simple, refreshing Bajorines mixology ideas. Perfect for your next gathering.",
+      image: "https://images.unsplash.com/photo-1536935338788-846bb9981813?auto=format&fit=crop&q=80&w=800",
       category: "Recipes",
       date: "Nov 05, 2023",
       readTime: "3 min read",
@@ -91,10 +55,46 @@ export const BlogSection: React.FC = () => {
       )
     },
     {
+      id: 1,
+      title: "The Antioxidant Power of Tart Cherries",
+      excerpt: "Why this superfood is taking the wellness world by storm and how it aids recovery.",
+      image: "https://images.unsplash.com/photo-1527661591475-527312dd65f5?auto=format&fit=crop&q=80&w=800",
+      category: "Wellness",
+      date: "Oct 12, 2023",
+      readTime: "5 min read",
+      content: (
+        <>
+          <p className="mb-6 text-lg leading-relaxed text-gray-700">
+            In the realm of superfoods, few fruits punch as far above their weight as the tart cherry. While sweet cherries are a summer staple, their sour cousins (specifically the Montmorency variety used in Bajorines) are packing a serious nutritional payload that science is just beginning to fully unravel.
+          </p>
+          
+          <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Anthocyanins: The Secret Weapon</h3>
+          <p className="mb-6 leading-relaxed text-gray-700">
+            The deep, rich red color of our beverage isn't just for show. It comes from anthocyanins, powerful antioxidants that fight oxidative stress in the body. Studies suggest that these compounds may have anti-inflammatory properties comparable to common over-the-counter pain relief, making them a favorite among endurance athletes.
+          </p>
+
+          <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">Recovery and Sleep</h3>
+          <p className="mb-6 leading-relaxed text-gray-700">
+            Perhaps the most celebrated benefit of tart cherry juice is its impact on recovery and sleep. Bajorines contains naturally occurring melatonin, the hormone that regulates your sleep-wake cycle.
+          </p>
+          <ul className="list-disc pl-6 mb-6 space-y-2 text-gray-700">
+            <li><strong>Reduced Muscle Soreness:</strong> Consuming tart cherry extract before and after intense exercise can reduce strength loss and muscle pain.</li>
+            <li><strong>Better Sleep Efficiency:</strong> Clinical trials have shown that tart cherry juice increases sleep time and efficiency in adults.</li>
+            <li><strong>Faster Recovery:</strong> By mitigating oxidative damage, your body bounces back faster after a HIIT session or a long run.</li>
+          </ul>
+
+          <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">The Verdict</h3>
+          <p className="mb-6 leading-relaxed text-gray-700">
+            Whether you are training for a marathon or just trying to get a better night's rest after a stressful week of work, the natural compounds found in every sip of Bajorines offer a simple, delicious way to support your body's intrinsic recovery systems.
+          </p>
+        </>
+      )
+    },
+    {
       id: 3,
       title: "From Orchard to Can: Our Process",
       excerpt: "A deep dive into our sustainable farming practices and cold-press extraction method.",
-      image: "https://picsum.photos/800/600?random=22",
+      image: "https://images.unsplash.com/photo-1615485290382-441e4d049cb5?auto=format&fit=crop&q=80&w=800",
       category: "Sustainability",
       date: "Dec 10, 2023",
       readTime: "6 min read",
@@ -109,7 +109,7 @@ export const BlogSection: React.FC = () => {
             We partner exclusively with family-owned farms that practice regenerative agriculture. This means no harsh pesticides and a focus on soil health. Our cherries are picked at the precise moment of peak ripeness—usually a window of just 48 hours—to ensure the sugar-to-acid ratio is exactly right.
           </p>
 
-          <img src="https://picsum.photos/800/400?random=50" alt="Cherry Orchard" className="w-full h-64 object-cover rounded-xl mb-8" />
+          <img src="https://images.unsplash.com/photo-1520121401995-928cd50d4e27?auto=format&fit=crop&q=80&w=800" alt="Cherry Orchard" className="w-full h-64 object-cover rounded-xl mb-8" />
 
           <h3 className="text-2xl font-bold text-gray-900 mt-8 mb-4">The Cold-Press Difference</h3>
           <p className="mb-6 leading-relaxed text-gray-700">
@@ -130,7 +130,7 @@ export const BlogSection: React.FC = () => {
       id: 4,
       title: "Morning vs Evening: When to Sip?",
       excerpt: "Optimizing your intake for energy in the AM or recovery in the PM.",
-      image: "https://picsum.photos/800/600?random=35",
+      image: "https://images.unsplash.com/photo-1541167760496-1628856ab772?auto=format&fit=crop&q=80&w=800",
       category: "Wellness",
       date: "Jan 15, 2024",
       readTime: "4 min read",
@@ -154,7 +154,7 @@ export const BlogSection: React.FC = () => {
       id: 5,
       title: "Pairing Bajorines with Food",
       excerpt: "From dark chocolate to charcuterie, discover the perfect culinary companions.",
-      image: "https://picsum.photos/800/600?random=42",
+      image: "https://images.unsplash.com/photo-1540333049032-9943b0af7688?auto=format&fit=crop&q=80&w=800",
       category: "Lifestyle",
       date: "Feb 02, 2024",
       readTime: "3 min read",
@@ -175,7 +175,7 @@ export const BlogSection: React.FC = () => {
       id: 6,
       title: "Recycling 101: The Aluminum Cycle",
       excerpt: "How your empty can becomes a new one in as little as 60 days.",
-      image: "https://picsum.photos/800/600?random=55",
+      image: "https://images.unsplash.com/photo-1591193512858-12ee296d7950?auto=format&fit=crop&q=80&w=800",
       category: "Sustainability",
       date: "Feb 20, 2024",
       readTime: "5 min read",
@@ -194,7 +194,6 @@ export const BlogSection: React.FC = () => {
 
   const handleArticleClick = (post: BlogPost) => {
     setSelectedPost(post);
-    // Smooth scroll to top of blog section so the user starts at the top of the article
     const blogSection = document.getElementById('blog');
     if (blogSection) {
       blogSection.scrollIntoView({ behavior: 'smooth' });
@@ -216,10 +215,8 @@ export const BlogSection: React.FC = () => {
     <section className="py-24 bg-gray-50 min-h-screen" id="blog">
       <div className="container mx-auto px-6">
         
-        {/* VIEW: Single Article */}
         {selectedPost ? (
           <div className="max-w-4xl mx-auto animate-fade-in">
-            {/* Back Nav */}
             <button 
               onClick={handleBackClick}
               className="flex items-center gap-2 text-gray-500 hover:text-bajorines-red transition-colors mb-8 group"
@@ -228,7 +225,6 @@ export const BlogSection: React.FC = () => {
               Back to Articles
             </button>
 
-            {/* Article Header */}
             <div className="mb-10">
               <div className="flex flex-wrap items-center gap-4 text-sm text-gray-500 mb-4">
                 <span className="bg-bajorines-red/10 text-bajorines-red px-3 py-1 rounded-full font-bold uppercase tracking-wider text-xs">
@@ -248,7 +244,6 @@ export const BlogSection: React.FC = () => {
               </h1>
             </div>
 
-            {/* Featured Image */}
             <div className="rounded-3xl overflow-hidden shadow-xl mb-12 h-[400px]">
               <img 
                 src={selectedPost.image} 
@@ -257,12 +252,10 @@ export const BlogSection: React.FC = () => {
               />
             </div>
 
-            {/* Article Content */}
             <div className="prose prose-lg prose-red max-w-none text-gray-700">
               {selectedPost.content}
             </div>
 
-            {/* Article Footer */}
             <div className="border-t border-gray-200 mt-16 pt-8 flex justify-between items-center">
               <span className="font-bold text-gray-900">Share this article:</span>
               <div className="flex gap-4">
@@ -273,7 +266,6 @@ export const BlogSection: React.FC = () => {
             </div>
           </div>
         ) : (
-          /* VIEW: Article List (Grid) */
           <>
             <div className="flex flex-col md:flex-row justify-between items-end mb-12">
               <div className="max-w-xl">

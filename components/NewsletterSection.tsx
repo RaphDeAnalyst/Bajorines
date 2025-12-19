@@ -29,8 +29,8 @@ export const NewsletterSection: React.FC = () => {
             className="flex-1 px-6 py-4 rounded-full text-gray-900 focus:outline-none focus:ring-4 focus:ring-white/30"
             required
           />
-          <Button variant="primary" className="bg-white text-bajorines-red hover:bg-gray-100 shadow-xl">
-            Subscribe Now
+          <Button variant="primary" className="bg-white text-bajorines-red hover:bg-gray-100 shadow-xl font-black uppercase tracking-widest">
+            GET MY 10% OFF
           </Button>
         </form>
         

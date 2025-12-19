@@ -1,65 +1,103 @@
+
 import React from 'react';
 import { Testimonial } from '../types';
+import { CheckCircle2, Instagram, Star } from 'lucide-react';
+import { ScrollReveal } from './ScrollReveal';
 
 export const Lifestyle: React.FC = () => {
   const testimonials: Testimonial[] = [
     {
       id: 1,
       name: "Alex Rivera",
-      role: "Fitness Instructor",
-      text: "Bajorines is my go-to post-workout refresher. The flavor is intense without being sickly sweet.",
-      image: "https://picsum.photos/100/100?random=1"
+      role: "Endurance Athlete",
+      text: "Bajorines is a non-negotiable part of my post-marathon recovery. The clean tartness hits different after 26 miles.",
+      image: "https://i.pravatar.cc/150?u=alex1"
     },
     {
       id: 2,
       name: "Sarah Chen",
-      role: "Creative Director",
-      text: "The aesthetic of the can caught my eye, but the taste kept me coming back. Pure cherry bliss.",
-      image: "https://picsum.photos/100/100?random=2"
+      role: "Tech Lead",
+      text: "Finally, a drink that doesn't rely on synthetic caffeine to keep me sharp. I swap my 3pm coffee for a cold Bajorines.",
+      image: "https://i.pravatar.cc/150?u=sarah2"
     }
   ];
 
   return (
-    <section className="py-24 bg-bajorines-dark text-white" id="about">
+    <section className="py-32 bg-bajorines-dark text-white overflow-hidden" id="about">
       <div className="container mx-auto px-6">
         
         {/* Lifestyle Grid */}
-        <div className="mb-20">
-          <div className="text-center mb-12">
-            <h2 className="font-display text-4xl font-bold mb-4">#SIPTHEMOMENT</h2>
-            <p className="text-gray-400">Join the movement. Tag us @Bajorines.</p>
+        <div className="mb-32">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+            <div className="max-w-xl">
+              <ScrollReveal>
+                <div className="flex items-center gap-2 mb-4">
+                  <Instagram size={18} className="text-bajorines-red" />
+                  <span className="text-bajorines-red font-black tracking-[0.4em] uppercase text-xs">#SipTheMoment</span>
+                </div>
+                <h2 className="font-display text-5xl md:text-7xl font-bold mb-6 tracking-tighter">Community First.</h2>
+                <p className="text-gray-400 text-lg md:text-xl font-light leading-relaxed">
+                  Join the movement of thousands of high-performers who chose nature over synthetics. Tag us <span className="text-white font-bold underline decoration-bajorines-red">@Bajorines</span> for a chance to be featured.
+                </p>
+              </ScrollReveal>
+            </div>
+            <div className="flex flex-col items-end">
+              <div className="flex gap-1 mb-2">
+                {[...Array(5)].map((_, i) => <Star key={i} size={16} className="fill-bajorines-red text-bajorines-red" />)}
+              </div>
+              <p className="text-white font-bold text-sm tracking-widest uppercase">4.9/5 Average Rating</p>
+            </div>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 h-96">
-            <div className="col-span-2 row-span-2 relative overflow-hidden rounded-2xl group">
-              <img src="https://picsum.photos/800/800?random=10" alt="Lifestyle" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-              <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 h-[600px] md:h-[800px]">
+            <div className="col-span-2 row-span-2 relative overflow-hidden rounded-[2.5rem] group border border-white/5 shadow-2xl">
+              <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&q=80&w=1200" alt="Athlete Drinking" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60"></div>
+              <div className="absolute bottom-10 left-10">
+                <span className="text-xs font-black uppercase tracking-[0.3em] text-white/60 mb-2 block">Featured Performance</span>
+                <p className="text-white font-bold text-xl">Recovery in the Wild</p>
+              </div>
             </div>
-            <div className="relative overflow-hidden rounded-2xl group">
-              <img src="https://picsum.photos/400/400?random=11" alt="Lifestyle" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div className="relative overflow-hidden rounded-[2.5rem] group border border-white/5">
+              <img src="https://images.unsplash.com/photo-1552674605-db6ffd4facb5?auto=format&fit=crop&q=80&w=800" alt="Gym Workout" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
             </div>
-            <div className="relative overflow-hidden rounded-2xl group">
-              <img src="https://picsum.photos/400/400?random=12" alt="Lifestyle" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div className="relative overflow-hidden rounded-[2.5rem] group border border-white/5">
+              <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&q=80&w=800" alt="Outdoor Active" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
             </div>
-            <div className="col-span-2 relative overflow-hidden rounded-2xl group">
-               <img src="https://picsum.photos/800/400?random=13" alt="Lifestyle" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
+            <div className="col-span-2 relative overflow-hidden rounded-[2.5rem] group border border-white/5">
+               <img src="https://images.unsplash.com/photo-1520333789090-1afc82db536a?auto=format&fit=crop&q=80&w=1200" alt="Modern Lifestyle" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" />
+               <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors"></div>
             </div>
           </div>
         </div>
 
         {/* Testimonials */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {testimonials.map((t) => (
-            <div key={t.id} className="bg-white/5 p-8 rounded-2xl backdrop-blur-sm border border-white/10 hover:border-bajorines-red/50 transition-colors">
-              <p className="text-lg italic text-gray-300 mb-6">"{t.text}"</p>
-              <div className="flex items-center gap-4">
-                <img src={t.image} alt={t.name} className="w-12 h-12 rounded-full border-2 border-bajorines-red" />
-                <div>
-                  <h4 className="font-bold text-white">{t.name}</h4>
-                  <p className="text-sm text-gray-500">{t.role}</p>
+        <div className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto">
+          {testimonials.map((t, idx) => (
+            <ScrollReveal key={t.id} delay={idx * 150}>
+              <div className="bg-white/5 p-12 rounded-[3rem] backdrop-blur-xl border border-white/10 hover:border-bajorines-red/30 transition-all duration-500 hover:translate-y-[-10px] relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-32 h-32 bg-bajorines-red/5 rounded-full blur-3xl -z-10 group-hover:bg-bajorines-red/10 transition-colors"></div>
+                
+                <div className="flex gap-1 mb-6">
+                    {[...Array(5)].map((_, i) => <Star key={i} size={14} className="fill-bajorines-red text-bajorines-red" />)}
+                </div>
+                
+                <p className="text-xl md:text-2xl font-light text-gray-200 mb-10 leading-relaxed">"{t.text}"</p>
+                
+                <div className="flex items-center gap-5">
+                  <img src={t.image} alt={t.name} className="w-16 h-16 rounded-full border-2 border-bajorines-red shadow-lg shadow-red-900/20" />
+                  <div>
+                    <div className="flex items-center gap-2">
+                        <h4 className="font-bold text-white text-lg">{t.name}</h4>
+                        <span className="flex items-center gap-1 text-[10px] font-black uppercase tracking-widest text-green-500 bg-green-500/10 px-2 py-0.5 rounded-full">
+                            <CheckCircle2 size={10} /> Verified Buyer
+                        </span>
+                    </div>
+                    <p className="text-sm text-gray-500 tracking-wide">{t.role}</p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
 
