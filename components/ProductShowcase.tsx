@@ -1,7 +1,7 @@
 
 import React, { useRef, useState, useCallback, useEffect } from 'react';
 import { Button } from './Button';
-import { Plus, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Plus, CheckCircle2, ArrowRight, Truck, ShieldCheck, Lock } from 'lucide-react';
 import { ScrollReveal } from './ScrollReveal';
 import { useCart } from '../context/CartContext';
 
@@ -177,12 +177,18 @@ export const ProductShowcase: React.FC = () => {
                    >
                      ADD TO BAG <Plus size={20} className="group-hover:rotate-90 transition-transform duration-300" />
                    </Button>
+                   
+                   {/* Optimized De-Risk Trust Signals */}
                    <div className="flex flex-wrap items-center gap-x-6 gap-y-3 mt-6 justify-center lg:justify-start">
-                      {['Free Shipping', '100% Recyclable', 'Cancel Anytime'].map(item => (
-                        <div key={item} className="flex items-center gap-1.5 text-[9px] font-black uppercase tracking-widest text-gray-500">
-                           <CheckCircle2 size={12} className="text-bajorines-red" /> {item}
-                        </div>
-                      ))}
+                      <div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-gray-500">
+                         <Truck size={14} className="text-bajorines-red" /> FREE SHIPPING ($50+)
+                      </div>
+                      <div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-gray-500">
+                         <ShieldCheck size={14} className="text-bajorines-red" /> SATISFACTION GUARANTEE
+                      </div>
+                      <div className="flex items-center gap-2 text-[9px] font-black uppercase tracking-widest text-gray-500">
+                         <Lock size={14} className="text-bajorines-red" /> SECURE CHECKOUT
+                      </div>
                    </div>
                 </div>
               </div>
