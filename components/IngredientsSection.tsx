@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { ScrollReveal } from './ScrollReveal';
-import { Leaf, Droplet, Sun, Zap, Info, ChevronRight, BarChart3 } from 'lucide-react';
+import { Leaf, Droplet, Sun, Zap, Info, BarChart3 } from 'lucide-react';
 import { DrawUnderline } from './DrawText';
 
 interface IngredientCardProps {
@@ -30,7 +30,7 @@ export const IngredientsSection: React.FC = () => {
   const cinematicAsset = "https://res.cloudinary.com/dp7bwqvoy/image/upload/v1766151652/Whisk_4a83b188693b1638666433ec19d544f6dr_1_qlcgqt.jpg";
 
   return (
-    <section className="bg-black py-32 relative overflow-hidden" id="ingredients">
+    <section className="bg-black pt-32 pb-8 relative overflow-hidden" id="ingredients">
       {/* Background ambient glow */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-bajorines-red/5 rounded-full blur-[120px] pointer-events-none"></div>
 

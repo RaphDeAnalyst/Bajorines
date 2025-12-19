@@ -23,7 +23,7 @@ export const Lifestyle: React.FC = () => {
   ];
 
   return (
-    <section className="py-32 bg-bajorines-dark text-white overflow-hidden" id="about">
+    <section className="pt-12 pb-32 bg-bajorines-dark text-white overflow-hidden" id="about">
       <div className="container mx-auto px-6">
         
         {/* Lifestyle Grid */}
