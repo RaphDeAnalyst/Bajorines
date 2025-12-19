@@ -33,11 +33,12 @@ export const ProductShowcase: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const getPrice = () => {
+  // Updated price calculation to be pure and take arguments
+  const calculatePrice = (size: BundleSize, sub: boolean) => {
     let base = 24.00;
-    if (bundleSize === 24) base = 44.00;
-    if (bundleSize === 48) base = 82.00;
-    return isSubscription ? base * 0.85 : base;
+    if (size === 24) base = 44.00;
+    if (size === 48) base = 82.00;
+    return sub ? base * 0.85 : base;
   };
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
@@ -53,14 +54,13 @@ export const ProductShowcase: React.FC = () => {
     addItem({
       id: `bajorines-cherry-${bundleSize}pk${isSubscription ? '-sub' : ''}`,
       name: `Bajorines Premium Cherry (${bundleSize}-Pack)${isSubscription ? ' - Subscription' : ''}`,
-      price: getPrice(),
+      price: calculatePrice(bundleSize, isSubscription),
       image: productImage
     });
   };
 
   return (
     <section ref={sectionRef} className="py-24 md:py-32 bg-black relative overflow-hidden" id="shop">
-      {/* Background Reveal Logic - Increased Opacity for intentional look */}
       <div 
         className="absolute inset-0 opacity-20 pointer-events-none transition-all duration-300 ease-out flex items-center justify-center overflow-hidden"
         style={{ 
@@ -89,7 +89,6 @@ export const ProductShowcase: React.FC = () => {
               </div>
             </ScrollReveal>
             
-            {/* Consolidated reveals to make the 'table' appear instantly with the description */}
             <ScrollReveal>
               <div className="space-y-8">
                 <p className="text-lg text-gray-400 leading-relaxed max-w-lg font-light">
@@ -124,7 +123,7 @@ export const ProductShowcase: React.FC = () => {
                     <div className="space-y-3">
                         <button 
                             onClick={() => setIsSubscription(false)}
-                            className={`w-full flex items-center justify-between p-4 rounded-2xl border transition-all ${!isSubscription ? 'border-white/20 bg-white/10' : 'border-white/5 opacity-50'}`}
+                            className={`w-full flex items-center justify-between p-4 rounded-2xl border transition-all ${!isSubscription ? 'border-white/20 bg-white/10' : 'border-white/5 opacity-50 hover:opacity-100 hover:border-white/20'}`}
                         >
                             <div className="flex items-center gap-3">
                               <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${!isSubscription ? 'border-bajorines-red' : 'border-gray-700'}`}>
@@ -132,12 +131,14 @@ export const ProductShowcase: React.FC = () => {
                               </div>
                               <span className="text-white text-sm font-bold">Single Purchase</span>
                             </div>
-                            <span className="text-white font-bold">${getPrice().toFixed(2)}</span>
+                            <span className="text-white font-bold">
+                              ${calculatePrice(bundleSize, false).toFixed(2)}
+                            </span>
                         </button>
 
                         <button 
                             onClick={() => setIsSubscription(true)}
-                            className={`w-full flex items-center justify-between p-4 rounded-2xl border transition-all ${isSubscription ? 'border-bajorines-red bg-bajorines-red/20' : 'border-white/5 opacity-50'}`}
+                            className={`w-full flex items-center justify-between p-4 rounded-2xl border transition-all ${isSubscription ? 'border-bajorines-red bg-bajorines-red/20' : 'border-white/5 opacity-50 hover:opacity-100 hover:border-white/20'}`}
                         >
                             <div className="flex items-center gap-3">
                               <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${isSubscription ? 'border-bajorines-red' : 'border-gray-700'}`}>
@@ -148,7 +149,9 @@ export const ProductShowcase: React.FC = () => {
                                   <span className="text-bajorines-red text-[8px] font-black uppercase tracking-widest">Ships every 30 days</span>
                               </div>
                             </div>
-                            <span className="text-white font-bold">${getPrice().toFixed(2)}</span>
+                            <span className="text-white font-bold">
+                              ${calculatePrice(bundleSize, true).toFixed(2)}
+                            </span>
                         </button>
                     </div>
                 </div>
@@ -173,7 +176,6 @@ export const ProductShowcase: React.FC = () => {
             </ScrollReveal>
           </div>
 
-          {/* Product Image Section */}
           <div className="lg:w-[55%] order-1 lg:order-2 flex justify-center perspective-2000 py-6 md:py-12">
              <ScrollReveal className="w-full flex justify-center">
                 <div 
