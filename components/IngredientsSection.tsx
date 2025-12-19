@@ -8,10 +8,10 @@ interface IngredientCardProps {
   icon: React.ReactNode;
   title: string;
   description: string;
-  delay: number;
+  delay?: number;
 }
 
-const IngredientCard = ({ icon, title, description, delay }: IngredientCardProps) => {
+const IngredientCard = ({ icon, title, description, delay = 0 }: IngredientCardProps) => {
   return (
     <ScrollReveal delay={delay} className="h-full">
       <div className="bg-white/5 backdrop-blur-lg border border-white/10 p-8 rounded-3xl h-full group hover:border-bajorines-red/40 transition-all duration-500 hover:translate-y-[-8px]">
@@ -104,30 +104,27 @@ export const IngredientsSection: React.FC = () => {
               </ScrollReveal>
             </div>
 
-            {/* Benefit-Driven "Power of 3" Grid */}
+            {/* Benefit-Driven "Power of 3" Grid - Removed Delays for Instant Visibility */}
             <div className="grid grid-cols-1 gap-6">
               <IngredientCard 
                 icon={<Sun size={28} />}
                 title="Hand-Picked: Peak Ripeness"
                 description="Our cherries are harvested in a precise 48-hour window when glucose and anthocyanin levels are at their absolute zenith. No fillers, no bruised fruit."
-                delay={200}
               />
               <IngredientCard 
                 icon={<Leaf size={28} />}
                 title="Cold-Pressed: Nutrient Locking"
                 description="Extracted via hydraulic pressure without heat. This expensive process ensures that every delicate enzyme and antioxidant survives from orchard to can."
-                delay={300}
               />
               <IngredientCard 
                 icon={<Zap size={28} />}
                 title="Ionized: Rapid Hydration"
                 description="Our proprietary ionization process balances glacial water with natural electrolytes for cellular-level absorption that beats standard recovery drinks."
-                delay={400}
               />
             </div>
 
-            {/* Data-Driven Comparison Graphic */}
-            <ScrollReveal delay={500}>
+            {/* Data-Driven Comparison Graphic - Removed Delay */}
+            <ScrollReveal>
               <div className="bg-gradient-to-br from-white/5 to-transparent border border-white/5 rounded-[2.5rem] p-10 mt-12 overflow-hidden relative group">
                 <div className="flex items-center gap-3 mb-8">
                   <BarChart3 className="text-bajorines-red" size={24} />
