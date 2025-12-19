@@ -160,9 +160,6 @@ export const IngredientsSection: React.FC = () => {
 
                 <div className="mt-10 flex items-center justify-between">
                   <p className="text-gray-500 text-[10px] uppercase font-bold tracking-widest">Lab-Verified Bioavailability</p>
-                  <a href="#comparison" className="text-bajorines-red text-[10px] font-black uppercase tracking-widest flex items-center gap-1 hover:gap-2 transition-all">
-                    Full Report <ChevronRight size={12} />
-                  </a>
                 </div>
                 
                 {/* Decorative background circle */}

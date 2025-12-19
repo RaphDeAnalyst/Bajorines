@@ -5,7 +5,6 @@ import { Hero } from './components/Hero';
 import { Features } from './components/Features';
 import { IngredientsSection } from './components/IngredientsSection';
 import { ProductShowcase } from './components/ProductShowcase';
-import { ComparisonSection } from './components/ComparisonSection';
 import { Lifestyle } from './components/Lifestyle';
 import { FAQSection } from './components/FAQSection';
 import { BlogSection } from './components/BlogSection';
@@ -57,10 +56,6 @@ const App: React.FC = () => {
           
           <div id="ingredients" className="bg-black">
             <IngredientsSection />
-          </div>
-          
-          <div id="comparison" className="bg-black">
-            <ComparisonSection />
           </div>
           
           <div id="about" className="bg-bajorines-dark">
