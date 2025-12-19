@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
 import { Features } from './components/Features';
@@ -7,26 +7,51 @@ import { ProductShowcase } from './components/ProductShowcase';
 import { Lifestyle } from './components/Lifestyle';
 import { BlogSection } from './components/BlogSection';
 import { NewsletterSection } from './components/NewsletterSection';
+import { RevealSection } from './components/RevealSection';
 import { Footer } from './components/Footer';
 import { CartProvider } from './context/CartContext';
 import { CartDrawer } from './components/CartDrawer';
+import { DiscountPopup } from './components/DiscountPopup';
+import Lenis from 'lenis';
 
 const App: React.FC = () => {
+  useEffect(() => {
+    const lenis = new Lenis({
+      duration: 1.5,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      touchMultiplier: 2,
+    });
+
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+
+    requestAnimationFrame(raf);
+
+    return () => {
+      lenis.destroy();
+    };
+  }, []);
+
   return (
     <CartProvider>
       <div className="bg-black font-sans text-gray-900 selection:bg-bajorines-red selection:text-white min-h-screen">
         <Header />
         <CartDrawer />
+        <DiscountPopup />
         
         <main className="w-full">
-          <div className="bg-black"><Hero /></div>
-          <div className="bg-white"><Features /></div>
-          <div className="bg-black"><IngredientsSection /></div>
-          <div className="bg-black"><ProductShowcase /></div>
-          <div className="bg-bajorines-dark"><Lifestyle /></div>
-          <div className="bg-gray-50"><BlogSection /></div>
-          <div className="bg-bajorines-red"><NewsletterSection /></div>
-          <div className="bg-white"><Footer /></div>
+          <Hero />
+          <div id="features" className="bg-white"><Features /></div>
+          <div id="ingredients" className="bg-black"><IngredientsSection /></div>
+          <div id="shop" className="bg-black"><ProductShowcase /></div>
+          <div id="reveal" className="bg-black"><RevealSection /></div>
+          <div id="about" className="bg-bajorines-dark"><Lifestyle /></div>
+          <div id="blog" className="bg-gray-50"><BlogSection /></div>
+          <div id="newsletter" className="bg-bajorines-red"><NewsletterSection /></div>
+          <Footer />
         </main>
       </div>
     </CartProvider>
