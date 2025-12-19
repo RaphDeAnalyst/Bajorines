@@ -68,8 +68,9 @@ export const FAQSection: React.FC = () => {
           </div>
         </ScrollReveal>
 
-        <ScrollReveal delay={200}>
-          <div className="mt-20 p-10 bg-gray-50 rounded-[3rem] text-center">
+        {/* Removed delay={200} and tightened margin to mt-12 */}
+        <ScrollReveal>
+          <div className="mt-12 p-10 bg-gray-50 rounded-[3rem] text-center">
             <h3 className="text-gray-900 font-bold text-xl mb-2">Still have questions?</h3>
             <p className="text-gray-500 mb-6 font-light">We're here to help you on your journey to vitality.</p>
             <a href="mailto:support@bajorines.com" className="inline-flex items-center gap-2 text-bajorines-red font-black uppercase tracking-widest text-xs hover:gap-3 transition-all">
